@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    container_name: mariadb_coffeecar
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: iweb
+    ports:
+      - 3306:3306
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 4040:8080
