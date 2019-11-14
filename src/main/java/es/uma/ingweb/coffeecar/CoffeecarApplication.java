@@ -21,6 +21,7 @@ public class CoffeecarApplication {
 
     public static void main(String[] args) {
         Person person = new Person();
+        person.getFirstName();
         SpringApplication.run(CoffeecarApplication.class, args);
     }
     @Bean
