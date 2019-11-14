@@ -1,5 +1,4 @@
 package es.uma.ingweb.coffeecar;
-
 import es.uma.ingweb.coffeecar.entities.BusData;
 import es.uma.ingweb.coffeecar.entities.Person;
 import lombok.extern.java.Log;
@@ -21,7 +20,6 @@ public class CoffeecarApplication {
 
     public static void main(String[] args) {
         Person person = new Person();
-        person.getFirstName();
         SpringApplication.run(CoffeecarApplication.class, args);
     }
     @Bean
