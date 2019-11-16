@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BusData {
+    private int _id;
     private int codParada;
     private float codLinea;
     private float lat;
@@ -11,11 +12,20 @@ public class BusData {
 
     public BusData(){}
 
-    public BusData(int codParada, float codLinea, float lat, float lon) {
+    public BusData(int _id, int codParada, float codLinea, float lat, float lon) {
+        this._id = _id;
         this.codParada = codParada;
         this.codLinea = codLinea;
         this.lat = lat;
         this.lon = lon;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 
     public int getCodParada() {
@@ -48,15 +58,5 @@ public class BusData {
 
     public void setLon(float lon) {
         this.lon = lon;
-    }
-
-    @Override
-    public String toString() {
-        return "BusData{" +
-                "codParada=" + codParada +
-                ", codLinea=" + codLinea +
-                ", lat=" + lat +
-                ", lon=" + lon +
-                '}';
     }
 }
