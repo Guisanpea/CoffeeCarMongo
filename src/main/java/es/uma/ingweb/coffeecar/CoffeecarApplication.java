@@ -1,6 +1,7 @@
 package es.uma.ingweb.coffeecar;
 
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +14,9 @@ public class CoffeecarApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(CoffeecarApplication.class, args);
+
+
+
     }
 
 }
