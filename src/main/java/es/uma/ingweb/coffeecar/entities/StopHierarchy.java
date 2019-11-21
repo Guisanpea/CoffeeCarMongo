@@ -11,27 +11,26 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BusHierarchy {
+public class StopHierarchy {                             //result->records->infoBus
     @JsonProperty("result")
-    private BusInfoResponse result;
+    private StopInfoResponse result;
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class BusInfoResponse {
+    public static class StopInfoResponse {
         @JsonProperty("records")
-        private List<BusData> busesData;
+        private List<StopData> stopsData;
         @JsonIgnoreProperties(ignoreUnknown = true)
         @Data
         @NoArgsConstructor
         @AllArgsConstructor
-        public static class BusData {
+        public static class StopData {
             private int _id;
-            private int codBus;
+            private int codParada;
             private float codLinea;
-            @JsonProperty("lat")
-            private float currLat;
-            @JsonProperty("lon")
-            private float currLon;
+            private float lat;
+            private float lon;
         }
     }
+
 }
