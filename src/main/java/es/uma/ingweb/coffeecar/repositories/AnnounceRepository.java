@@ -15,6 +15,6 @@ public interface AnnounceRepository extends PagingAndSortingRepository<Announce,
     List<Announce> findAnnouncesByPassengers(@Param("pasengers") User passenger);
     List<Announce> findAnnouncesByDriverNotAndPassengersNotContaining(@Param("user") User user, @Param("user") User passenger);
     List<Announce> findAnnouncesByArrival(@Param("arrival")String arrival);
-    List<Announce> findAnnouncesByArrivalAAndArrivalDate(@Param("arrival")String arrival,@Param("arrivalDate") Date arrivalDate);
+    List<Announce> findAnnouncesByArrivalAndArrivalDate(@Param("arrival")String arrival,@Param("arrivalDate") Date arrivalDate);
     List<Announce> findAnnouncesByArrivalDate(@Param("arrival")Date arrivalDate);
 }
