@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/getStops")
@@ -23,24 +24,21 @@ public class StopConsumer {
     @GetMapping(value="/all")
     public List<StopHierarchy.StopInfoResponse.StopData> getBus(){
         String uri = "http://datosabiertos.malaga.eu/api/3/action/datastore_search?resource_id=d7eb3174-dcfb-4917-9876-c0e21dd810e3";
-        List<StopHierarchy.StopInfoResponse.StopData> stops =
-                restTemplate.getForObject(uri, StopHierarchy.class).getResult().getStopsData();
 
-        return stops;
+        return Objects.requireNonNull(restTemplate.getForObject(uri, StopHierarchy.class)).getResult().getStopsData();
     }
 
-    @GetMapping(value="/by")
+    @GetMapping(value="/near")
     public List<StopHierarchy.StopInfoResponse.StopData> getBusByPosition(@RequestParam(name="lat", required=true) float lat,
                                                                          @RequestParam(name="lon", required=true) float lon){
         String uri = "http://datosabiertos.malaga.eu/api/3/action/datastore_search?resource_id=d7eb3174-dcfb-4917-9876-c0e21dd810e3";
         List<StopHierarchy.StopInfoResponse.StopData> stops =
-                restTemplate.getForObject(uri, StopHierarchy.class).getResult().getStopsData();
+                Objects.requireNonNull(restTemplate.getForObject(uri, StopHierarchy.class)).getResult().getStopsData();
         GeographicalCoordinates current = new GeographicalCoordinates(lat, lon);
-        List<StopHierarchy.StopInfoResponse.StopData> nearbyBuses = new ArrayList<>();
-        stops.forEach(b-> {
-            if(current.distanceTo(new GeographicalCoordinates(b.getLat(), b.getLon()))<=1.5) nearbyBuses.add(b);
-        });
 
-        return nearbyBuses.size()>0 ? nearbyBuses: stops;
+        return stops.stream()
+                .filter(stop -> current.distanceTo(new GeographicalCoordinates(stop.getLon(), stop.getLat()))>=1.5)
+                .collect(Collectors.toList());
+
     }
 }
