@@ -18,9 +18,11 @@ public class Announce {
     private Date arrivalDate;
     private String description;
     private String arrival;
-    private long arrivalLatitude;
-    private long arrivalLongitude;
+    private double arrivalLatitude;
+    private double arrivalLongitude;
     private String departure;
+    private double departureLatitude;
+    private double getDepartureLongitude;
     private int seats;
     @ManyToOne(cascade = CascadeType.ALL)
     private User driver;
