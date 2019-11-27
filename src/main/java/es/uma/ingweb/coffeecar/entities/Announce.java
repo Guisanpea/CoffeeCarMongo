@@ -18,6 +18,8 @@ public class Announce {
     private Date arrivalDate;
     private String description;
     private String arrival;
+    private long arrivalLatitude;
+    private long arrivalLongitude;
     private String departure;
     private int seats;
     @ManyToOne(cascade = CascadeType.ALL)
