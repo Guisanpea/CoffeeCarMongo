@@ -23,6 +23,7 @@ public class Announce {
     private String departure;
     private double departureLatitude;
     private double getDepartureLongitude;
+    private String imgLink;
     private int seats;
     @ManyToOne(cascade = CascadeType.ALL)
     private User driver;
