@@ -3,6 +3,8 @@ package es.uma.ingweb.coffeecar.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -14,11 +16,15 @@ public class Announce {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
-    private Date departureTime;
-    private Date arrivalDate;
+    private LocalDateTime departureTime;
+    private LocalDateTime arrivalDate;
     private String description;
     private String arrival;
-    private String departure;
+    private double arrivalLatitude;
+    private double arrivalLongitude;
+    private double departureLatitude;
+    private double getDepartureLongitude;
+    private String imgLink;
     private int seats;
     @ManyToOne(cascade = CascadeType.ALL)
     private User driver;
