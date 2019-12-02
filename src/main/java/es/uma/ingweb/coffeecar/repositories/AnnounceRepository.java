@@ -14,6 +14,7 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "Announce", path = "announced")
 public interface AnnounceRepository extends PagingAndSortingRepository<Announce, Long> {
 
+    Announce findById(@Param("id") long id);
     List<Announce> findAnnouncesByDriver_Mail(@Param("mail") String mail);
     @Query(value = "Select a from Announce a, a.passengers where p.mail like concat('%',:mail,'%')", nativeQuery = true)
     List<Announce> findAnnouncesByPassengers(@Param("mail") String mail);
