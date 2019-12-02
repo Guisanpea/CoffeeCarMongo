@@ -19,8 +19,8 @@ public interface AnnounceRepository extends PagingAndSortingRepository<Announce,
     List<Announce> findAnnouncesByPassengers(@Param("mail") String mail);
     @Query(value = "Select a from Announce a, a.passengers p where p.mail not like concat('%',:mail_passenger,'%') and a.driver.mail " +
             "not like concat('%',:driver_mail,'%')", nativeQuery = true)
-    List<Announce> findAnnouncesByDriverNotAndPassengersNot(@Param("driver_mail") String driver_mail, @Param("mail_passenger") String mail_passenger);
+    List<Announce> findAnnouncesByDriverNotAndPassengersNot(@Param("mail") String driver_mail, @Param("mail") String mail_passenger);
     List<Announce> findAnnouncesByArrival(@Param("arrival")String arrival);
-    List<Announce> findAnnouncesByArrivalAndArrivalDate(String arrival, LocalDateTime arrivalDate);
-    List<Announce> findAnnouncesByArrivalDate(LocalDateTime arrivalDate);
+    List<Announce> findAnnouncesByArrivalAndArrivalDate(@Param("arrival") String arrival, @Param("arrival") LocalDateTime arrivalDate);
+    List<Announce> findAnnouncesByArrivalDate(@Param("arrivalDate") LocalDateTime arrivalDate);
 }
