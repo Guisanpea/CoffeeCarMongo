@@ -14,9 +14,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private String password;
     @Column(unique = true)
-    private String mail;
+    private String email;
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
     @ToString.Exclude @EqualsAndHashCode.Exclude
     private List<Announce> ownedAnnounces;
