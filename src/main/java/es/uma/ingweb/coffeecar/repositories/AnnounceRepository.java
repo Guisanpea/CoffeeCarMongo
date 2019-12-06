@@ -14,10 +14,7 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "Announce", path = "announced")
 public interface AnnounceRepository extends PagingAndSortingRepository<Announce, Long> {
 
-    Announce findAnnounceById(@Param("id") long id);
-    List<Announce> findAnnouncesByDriver(@Param("user") User user);
-    List<Announce> findAnnouncesByPassengersContaining(@Param("user") User user);
     List<Announce> findAnnouncesByArrival(@Param("arrival")String arrival);
-    List<Announce> findAnnouncesByArrivalAndArrivalDate(@Param("arrival") String arrival, @Param("arrival") LocalDateTime arrivalDate);
-    List<Announce> findAnnouncesByArrivalDate(@Param("arrivalDate") LocalDateTime arrivalDate);
+    List<Announce> findAnnouncesByArrivalAndArrivalDate(@Param("arrival") String arrival, @Param("arrival") String arrivalDate);
+    List<Announce> findAnnouncesByArrivalDate(@Param("arrivalDate") String arrivalDate);
 }
