@@ -16,8 +16,8 @@ public class Announce {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
-    private LocalDateTime departureTime;
-    private LocalDateTime arrivalDate;
+    private String departureTime;
+    private String arrivalDate;
     private String description;
     private String arrival;
     private double arrivalLatitude;
