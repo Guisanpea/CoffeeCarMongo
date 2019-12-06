@@ -17,7 +17,7 @@ public class Announce {
     private long id;
     private String title;
     private String departureTime;
-    private LocalDateTime arrivalDate;
+    private String arrivalDate;
     private String description;
     private String arrival;
     private double arrivalLatitude;
