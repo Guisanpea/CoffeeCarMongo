@@ -1,4 +1,5 @@
 package es.uma.ingweb.coffeecar;
+import es.uma.ingweb.coffeecar.entities.User;
 import lombok.extern.java.Log;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

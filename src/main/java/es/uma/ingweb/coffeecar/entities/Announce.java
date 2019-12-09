@@ -23,7 +23,7 @@ public class Announce {
     private double arrivalLatitude;
     private double arrivalLongitude;
     private double departureLatitude;
-    private double getDepartureLongitude;
+    private double departureLongitude;
     private String imgLink;
     private int seats;
     @ManyToOne(cascade = CascadeType.ALL)

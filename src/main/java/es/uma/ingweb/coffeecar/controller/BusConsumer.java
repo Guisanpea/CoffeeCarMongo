@@ -15,8 +15,11 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/getBuses")
 public class BusConsumer {
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    public BusConsumer(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @GetMapping(value="/all")
     public List<BusHierarchy.BusInfoResponse.BusData> getBusesPosition(){
@@ -26,7 +29,7 @@ public class BusConsumer {
     }
 
     @GetMapping(value="/byLine")
-    public List<BusHierarchy.BusInfoResponse.BusData> getBusesPosition(@RequestParam(name="line", required= true) float line){
+    public List<BusHierarchy.BusInfoResponse.BusData> getBusesPosition(@RequestParam(name="line") float line){
         String uri = "http://datosabiertos.malaga.eu/api/3/action/datastore_search?resource_id=9bc05288-1c11-4eec-8792-d74b679c8fcf";
         List<BusHierarchy.BusInfoResponse.BusData> buses =
                 Objects.requireNonNull(restTemplate.getForObject(uri, BusHierarchy.class)).getResult().getBusesData();
