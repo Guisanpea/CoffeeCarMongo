@@ -25,8 +25,7 @@ public interface AnnounceRepository extends CrudRepository<Announce, Long> {
     @Query("SELECT DISTINCT a from Announce a JOIN a.driver d " +
           "WHERE d.email <> ?1 and ?1 NOT IN (SELECT p.email from a.passengers p)")
     List<Announce> findAvailableAnnounces(String email);
-    @Query("select distinct a from Announce a " +
-          "left join a.passengers p left join a.driver d " +
-          "where p.email <> ?1 and d.email <> ?1")
+    @Query("SELECT DISTINCT a from Announce a JOIN a.driver d " +
+            "WHERE d.email = ?1 or ?1 IN (SELECT p.email from a.passengers p)")
     List<Announce> findUserTrips(String email);
 }
