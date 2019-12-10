@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/getStops")
+@RequestMapping("/stops")
 public class StopConsumer {
 
     private final RestTemplate restTemplate;
@@ -26,24 +26,26 @@ public class StopConsumer {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping(value="/all")
-    public List<StopHierarchy.StopInfoResponse.StopData> getBus(){
+    @GetMapping(value = "/")
+    public List<StopHierarchy.StopInfoResponse.StopData> getBus() {
         String uri = "http://datosabiertos.malaga.eu/api/3/action/datastore_search?resource_id=d7eb3174-dcfb-4917-9876-c0e21dd810e3";
 
         return Objects.requireNonNull(restTemplate.getForObject(uri, StopHierarchy.class)).getResult().getStopsData();
     }
 
-    @GetMapping(value="/near")
-    public List<StopHierarchy.StopInfoResponse.StopData> getBusByPosition(@RequestParam(name="lat") float lat,
-                                                                         @RequestParam(name="lon") float lon){
+    @GetMapping(value = "/near")
+    public List<StopHierarchy.StopInfoResponse.StopData> getBusByPosition(@RequestParam(name = "lat") float lat,
+                                                                          @RequestParam(name = "lon") float lon) {
         String uri = "http://datosabiertos.malaga.eu/api/3/action/datastore_search?resource_id=d7eb3174-dcfb-4917-9876-c0e21dd810e3";
-        List<StopHierarchy.StopInfoResponse.StopData> stops =
-                Objects.requireNonNull(restTemplate.getForObject(uri, StopHierarchy.class)).getResult().getStopsData();
-        GeographicalCoordinates current = new GeographicalCoordinates(lon, lat);
+        List<StopHierarchy.StopInfoResponse.StopData> stops = restTemplate.getForObject(uri, StopHierarchy.class)
+              .getResult()
+              .getStopsData();
+        GeographicalCoordinates requestCoordinates = new GeographicalCoordinates(lon, lat);
 
-        return stops.stream()
-                .filter(stop -> current.distanceTo(new GeographicalCoordinates(stop.getLon(), stop.getLat()))<=1.5)
-                .collect(Collectors.toList());
-
+        List<StopHierarchy.StopInfoResponse.StopData> filteredStops = stops.stream().filter(stop -> {
+            GeographicalCoordinates stopCoordinates = new GeographicalCoordinates(stop.getLon(), stop.getLat());
+            return requestCoordinates.distanceTo(stopCoordinates) <= 1000;
+        }).collect(Collectors.toList());
+        return filteredStops;
     }
 }

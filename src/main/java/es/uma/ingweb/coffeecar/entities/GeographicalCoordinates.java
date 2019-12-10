@@ -6,21 +6,24 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class GeographicalCoordinates {
-    private float lon;
-    private float lat;
+    private final int EARTH_RADIUS = 6371;
 
-    public float distanceTo(GeographicalCoordinates a2){
-        //double radioTierra = 3958.75;//en millas
-        double radioTierra = 6371;//en kilómetros
-        double dLat = Math.toRadians(a2.lat - lat);
-        double dLng = Math.toRadians(a2.lon - lon);
-        double sindLat = Math.sin(dLat / 2);
-        double sindLng = Math.sin(dLng / 2);
-        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)
-                * Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(a2.lat));
-        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
-        double distancia = radioTierra * va2;
+    private float longitude;
+    private float latitude;
 
-        return (float)distancia;
+    public double distanceTo(GeographicalCoordinates origin){
+        double latDistance = Math.toRadians(origin.latitude - latitude);
+        double lonDistance = Math.toRadians(origin.longitude - longitude);
+
+        // formula haversine ni idea de que es a y c :) https://en.wikipedia.org/wiki/Haversine_formula
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+              + Math.cos(Math.toRadians(latitude)) * Math.cos(Math.toRadians(origin.latitude))
+              * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = EARTH_RADIUS * c * 1000; // convert to meters
+
+        distance = Math.pow(distance, 2);
+
+        return Math.sqrt(distance);
     }
 }
