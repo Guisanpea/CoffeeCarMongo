@@ -19,7 +19,7 @@ public class User {
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
     @ToString.Exclude @EqualsAndHashCode.Exclude
     private List<Announce> ownedAnnounces;
-    @ManyToMany(mappedBy = "passengers",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "passengers")
     @ToString.Exclude @EqualsAndHashCode.Exclude
     private List<Announce> joinedAnnounces;
 }

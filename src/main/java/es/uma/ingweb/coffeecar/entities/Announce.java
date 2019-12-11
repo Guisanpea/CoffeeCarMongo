@@ -26,8 +26,8 @@ public class Announce {
     private double departureLongitude;
     private String imgLink;
     private int seats;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User driver;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<User> passengers;
 }
