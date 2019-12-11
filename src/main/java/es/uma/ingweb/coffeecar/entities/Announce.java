@@ -28,6 +28,6 @@ public class Announce {
     private int seats;
     @ManyToOne
     private User driver;
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<User> passengers;
 }
