@@ -26,14 +26,14 @@ public class StopConsumer {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public List<StopHierarchy.StopInfoResponse.StopData> getBus() {
         String uri = "http://datosabiertos.malaga.eu/api/3/action/datastore_search?resource_id=d7eb3174-dcfb-4917-9876-c0e21dd810e3";
 
         return Objects.requireNonNull(restTemplate.getForObject(uri, StopHierarchy.class)).getResult().getStopsData();
     }
 
-    @GetMapping(value = "/near")
+    @GetMapping(value = "/search/findNearby")
     public List<StopHierarchy.StopInfoResponse.StopData> getBusByPosition(@RequestParam(name = "lat") float lat,
                                                                           @RequestParam(name = "lon") float lon) {
         String uri = "http://datosabiertos.malaga.eu/api/3/action/datastore_search?resource_id=d7eb3174-dcfb-4917-9876-c0e21dd810e3";
