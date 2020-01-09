@@ -26,7 +26,7 @@ public class StopConsumer {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping(value = "")
+    @GetMapping
     public List<StopHierarchy.StopInfoResponse.StopData> getBus() {
         String uri = "http://datosabiertos.malaga.eu/api/3/action/datastore_search?resource_id=d7eb3174-dcfb-4917-9876-c0e21dd810e3";
 

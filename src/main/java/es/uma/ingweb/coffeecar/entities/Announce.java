@@ -1,20 +1,16 @@
 package es.uma.ingweb.coffeecar.entities;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 
-@Entity
 @Data
 public class Announce {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private String id;
     private String title;
     private String departureTime;
     private String arrivalDate;
@@ -26,8 +22,8 @@ public class Announce {
     private double departureLongitude;
     private String imgLink;
     private int seats;
-    @ManyToOne
+    @DBRef
     private User driver;
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @DBRef
     private List<User> passengers;
 }
