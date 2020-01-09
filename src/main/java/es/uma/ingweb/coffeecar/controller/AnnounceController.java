@@ -22,7 +22,7 @@ public class AnnounceController {
     }
 
     @PostMapping
-    public Announce create(@RequestParam Announce announce) {
+    public Announce create(@RequestBody Announce announce) {
         return announceRepository.save(announce);
     }
 }
