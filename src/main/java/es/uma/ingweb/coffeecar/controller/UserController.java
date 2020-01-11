@@ -25,4 +25,14 @@ public class UserController {
     public User create(@RequestBody User user) {
         return userRepository.save(user);
     }
+
+    @GetMapping("/search/findByEmail")
+    public User findByEmail(@RequestParam String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
+    @GetMapping("/search/findByName")
+    public List<User> findByName(@RequestParam String name) {
+        return userRepository.findUsersByName(name);
+    }
 }

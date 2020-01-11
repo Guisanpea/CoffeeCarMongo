@@ -18,11 +18,26 @@ public class AnnounceController {
 
     @GetMapping
     public List<Announce> findAll() {
-       return announceRepository.findAll();
+        return announceRepository.findAll();
     }
 
     @PostMapping
     public Announce create(@RequestBody Announce announce) {
         return announceRepository.save(announce);
+    }
+
+    @GetMapping("/search/findByArrival")
+    public List<Announce> findAnnouncesByArrival(String arrival) {
+        return announceRepository.findAnnouncesByArrival(arrival);
+    }
+
+    @GetMapping("/search/findByDriverEmail")
+    List<Announce> findAnnouncesByDriverEmail(String driverEmail) {
+        return announceRepository.findAnnouncesByDriverEmail(driverEmail);
+    }
+
+    @GetMapping("/search/findByDriverEmailNot")
+    List<Announce> findAnnouncesByDriverEmailNot(String driverEmail) {
+        return announceRepository.findAnnouncesByDriverEmailNot(driverEmail);
     }
 }
