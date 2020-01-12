@@ -2,7 +2,9 @@ package es.uma.ingweb.coffeecar.controller;
 
 import es.uma.ingweb.coffeecar.entities.Announce;
 import es.uma.ingweb.coffeecar.repositories.AnnounceRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,6 +26,15 @@ public class AnnounceController {
     @PostMapping
     public Announce create(@RequestBody Announce announce) {
         return announceRepository.save(announce);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        announceRepository.findById(id)
+            .ifPresentOrElse(
+                announceRepository::delete,
+                () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Announce not found");}
+            );
     }
 
     @GetMapping("/search/findByArrival")
