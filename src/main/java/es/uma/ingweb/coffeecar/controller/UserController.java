@@ -23,6 +23,15 @@ public class UserController {
        return userRepository.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        userRepository.findById(id)
+            .ifPresentOrElse(
+                userRepository::delete,
+                () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Announce not found");}
+            );
+    }
+
     @GetMapping("/{id}")
     public User findById(@PathVariable String id) {
         return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ":("));
