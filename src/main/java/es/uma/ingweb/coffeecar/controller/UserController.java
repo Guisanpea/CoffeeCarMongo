@@ -2,7 +2,9 @@ package es.uma.ingweb.coffeecar.controller;
 
 import es.uma.ingweb.coffeecar.entities.User;
 import es.uma.ingweb.coffeecar.repositories.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -19,6 +21,11 @@ public class UserController {
     @GetMapping
     public List<User> findAll() {
        return userRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public User findById(@PathVariable String id) {
+        return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ":("));
     }
 
     @PostMapping
