@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 public class Comment {
     @Id
     private String id;
-    private String title;
     private String date;
     private String body;
     @DBRef
