@@ -1,0 +1,18 @@
+package es.uma.ingweb.coffeecar.entities;
+
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
+
+@Data
+public class Comment {
+    @Id
+    private String id;
+    private String title;
+    private String body;
+    @DBRef
+    private User author;
+    @DBRef
+    private Announce announce;
+}
