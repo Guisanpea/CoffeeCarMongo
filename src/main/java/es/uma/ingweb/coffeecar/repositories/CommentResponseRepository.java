@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface CommentResponseRepository extends MongoRepository<CommentResponse, String> {
-    List<CommentResponse> findCommentResponseByCommentId(String commentId);
+    List<CommentResponse> findCommentResponseByCommentIdOrderByDate(String commentId);
 }

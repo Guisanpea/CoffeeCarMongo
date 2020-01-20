@@ -39,16 +39,16 @@ public class AnnounceController {
 
     @GetMapping("/search/findByArrival")
     public List<Announce> findAnnouncesByArrival(@RequestParam String arrival) {
-        return announceRepository.findAnnouncesByArrival(arrival);
+        return announceRepository.findAnnouncesByArrivalOrderByDepartureTime(arrival);
     }
 
-    @GetMapping("/search/findByDriverEmail")
-    List<Announce> findAnnouncesByDriverEmail(@RequestParam String driverEmail) {
-        return announceRepository.findAnnouncesByDriverEmail(driverEmail);
+    @GetMapping("/search/findByDriverId")
+    List<Announce> findAnnouncesByDriverId(@RequestParam String id) {
+        return announceRepository.findAnnouncesByDriverIdOrderByDepartureTime(id);
     }
 
-    @GetMapping("/search/findByDriverEmailNot")
-    List<Announce> findAnnouncesByDriverEmailNot(@RequestParam String driverEmail) {
-        return announceRepository.findAnnouncesByDriverEmailNot(driverEmail);
+    @GetMapping("/search/findByDriverIdNot")
+    List<Announce> findAnnouncesByDriverIdNot(@RequestParam String id) {
+        return announceRepository.findAnnouncesByDriverIsNotOrderByDepartureTime(id);
     }
 }

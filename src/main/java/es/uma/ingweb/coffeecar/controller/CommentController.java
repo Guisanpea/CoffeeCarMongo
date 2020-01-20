@@ -22,7 +22,7 @@ public class CommentController {
 
     @GetMapping("/{id}")
     public List<Comment> getCommentFromAnnounce(@PathVariable String id){
-        return commentRepository.findCommentByAnnounceId(id);
+        return commentRepository.findCommentByAnnounceIdOrderByDate(id);
     }
 
     @PostMapping

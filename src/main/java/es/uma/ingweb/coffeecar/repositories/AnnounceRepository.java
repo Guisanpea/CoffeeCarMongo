@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AnnounceRepository extends MongoRepository<Announce, String> {
-    List<Announce> findAnnouncesByArrival(String arrival);
-    List<Announce> findAnnouncesByDriverEmail(String driverEmail);
-    List<Announce> findAnnouncesByDriverEmailNot(String driverEmail);
+    List<Announce> findAnnouncesByArrivalOrderByDepartureTime(String arrival);
+    List<Announce> findAnnouncesByDriverIdOrderByDepartureTime(String id);
+    List<Announce> findAnnouncesByDriverIsNotOrderByDepartureTime(String id);
 }
