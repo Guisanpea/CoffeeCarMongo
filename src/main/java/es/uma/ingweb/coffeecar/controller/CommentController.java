@@ -1,7 +1,6 @@
 package es.uma.ingweb.coffeecar.controller;
 
 
-import es.uma.ingweb.coffeecar.entities.Announce;
 import es.uma.ingweb.coffeecar.entities.Comment;
 import es.uma.ingweb.coffeecar.repositories.CommentRepository;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/comments")
+@RequestMapping("/comments")
 public class CommentController {
     private final CommentRepository commentRepository;
 
@@ -22,7 +21,7 @@ public class CommentController {
 
     @GetMapping("/{id}")
     public List<Comment> getCommentFromAnnounce(@PathVariable String id){
-        return commentRepository.findCommentByAnnounceIdOrderByDate(id);
+        return commentRepository.findCommentByAnnounceOrderByDate(id);
     }
 
     @PostMapping
