@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import java.util.List;
+
 
 @Data
 public class Comment {
@@ -15,4 +17,6 @@ public class Comment {
     private User author;
     @DBRef
     private Announce announce;
+    @DBRef
+    private List<Comment> responses;
 }
