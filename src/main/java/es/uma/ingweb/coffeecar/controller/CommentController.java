@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/comments")
+@RequestMapping("/api/comments")
 public class CommentController {
     private final CommentRepository commentRepository;
 
@@ -20,7 +20,7 @@ public class CommentController {
         this.commentRepository = commentRepository;
     }
 
-    @GetMapping("/search/{id}")
+    @GetMapping("/{id}")
     public List<Comment> getCommentFromAnnounce(@PathVariable String id){
         return commentRepository.findCommentByAnnounceId(id);
     }

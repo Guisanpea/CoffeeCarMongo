@@ -10,6 +10,7 @@ public class CommentResponse {
     @Id
     private String id;
     private String title;
+    private String date;
     private String body;
     @DBRef
     private User author;

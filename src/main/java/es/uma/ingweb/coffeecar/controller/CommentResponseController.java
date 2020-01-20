@@ -18,7 +18,7 @@ public class CommentResponseController {
         this.commentResponseRepository = commentResponseRepository;
     }
 
-    @GetMapping("/search/{id}")
+    @GetMapping("/{id}")
     public List<CommentResponse> getCommentFromAnnounce(@PathVariable String id){
         return commentResponseRepository.findCommentResponseByCommentId(id);
     }
