@@ -23,6 +23,11 @@ public class AnnounceController {
         return announceRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Announce findById(@PathVariable String id) {
+        return announceRepository.findAnnouncesById(id);
+    }
+
     @PostMapping
     public Announce create(@RequestBody Announce announce) {
         return announceRepository.save(announce);
